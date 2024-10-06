@@ -2,11 +2,17 @@ from fastapi import FastAPI
 
 import external_api
 import prime_numbers
-import random_joke
+import random_country
 
 app = FastAPI()
 
 
-app.include_router(random_joke.router)
+app.include_router(random_country.router)
 app.include_router(prime_numbers.router)
 app.include_router(external_api.router)
+
+
+@app.get("/count")
+def count():
+    import threading
+    return threading.active_count()
