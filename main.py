@@ -15,4 +15,8 @@ app.include_router(external_api.router)
 @app.get("/count")
 def count():
     import threading
-    return threading.active_count()
+
+    return {
+        "count": threading.active_count(),
+        "names": [str(t) for t in threading.enumerate()],
+    }
